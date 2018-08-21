@@ -1,0 +1,14 @@
+{
+  "name": "team-schedule-wallpaper-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/KashMoneyMillionaire/team-schedule-wallpaper-generator.git",
+  "author": "Kash Cummings <kashleec@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^0.11.1"
+  },
+  "dependencies": {
+    "merge-images": "^1.1.0"
+  }
+}
