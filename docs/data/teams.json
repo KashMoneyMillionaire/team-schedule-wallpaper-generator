@@ -1,522 +1,522 @@
 [
     {
       "name": "Air Force",
-      "file": "Air Force.png"
+      "logo": "Air Force.png"
     },
     {
       "name": "Akron",
-      "file": "Akron.png"
+      "logo": "Akron.png"
     },
     {
       "name": "Alabama",
-      "file": "Alabama.png"
+      "logo": "Alabama.png"
     },
     {
       "name": "Appalachian St.",
-      "file": "Appalachian St.png"
+      "logo": "Appalachian St.png"
     },
     {
       "name": "Arizona",
-      "file": "Arizona.png"
+      "logo": "Arizona.png"
     },
     {
       "name": "Arizona St.",
-      "file": "Arizona St.png"
+      "logo": "Arizona St.png"
     },
     {
       "name": "Arkansas",
-      "file": "Arkansas.png"
+      "logo": "Arkansas.png"
     },
     {
       "name": "Arkansas St.",
-      "file": "Arkansas St.png"
+      "logo": "Arkansas St.png"
     },
     {
       "name": "Army",
-      "file": "Army.png"
+      "logo": "Army.png"
     },
     {
       "name": "Auburn",
-      "file": "Auburn.png"
+      "logo": "Auburn.png"
     },
     {
       "name": "Ball St.",
-      "file": "Ball St.png"
+      "logo": "Ball St.png"
     },
     {
       "name": "Baylor",
-      "file": "Baylor.png"
+      "logo": "Baylor.png"
     },
     {
       "name": "Boise St.",
-      "file": "Boise St.png"
+      "logo": "Boise St.png"
     },
     {
       "name": "Boston College",
-      "file": "Boston College.png"
+      "logo": "Boston College.png"
     },
     {
       "name": "Bowling Green",
-      "file": "Bowling Green.png"
+      "logo": "Bowling Green.png"
     },
     {
       "name": "Buffalo",
-      "file": "Buffalo.png"
+      "logo": "Buffalo.png"
     },
     {
       "name": "BYU",
-      "file": "BYU.png"
+      "logo": "BYU.png"
     },
     {
       "name": "C Michigan",
-      "file": "C Michigan.png"
+      "logo": "C Michigan.png"
     },
     {
       "name": "California",
-      "file": "California.png"
+      "logo": "California.png"
     },
     {
       "name": "Charlotte",
-      "file": "Charlotte.png"
+      "logo": "Charlotte.png"
     },
     {
       "name": "Cincinnati",
-      "file": "Cincinnati.png"
+      "logo": "Cincinnati.png"
     },
     {
       "name": "Clemson",
-      "file": "Clemson.png"
+      "logo": "Clemson.png"
     },
     {
       "name": "Coastal Car",
-      "file": "Coastal Car.png"
+      "logo": "Coastal Car.png"
     },
     {
       "name": "Colorado",
-      "file": "Colorado.png"
+      "logo": "Colorado.png"
     },
     {
       "name": "Colorado St.",
-      "file": "Colorado St.png"
+      "logo": "Colorado St.png"
     },
     {
       "name": "Connecticut",
-      "file": "Connecticut.png"
+      "logo": "Connecticut.png"
     },
     {
       "name": "Duke",
-      "file": "Duke.png"
+      "logo": "Duke.png"
     },
     {
       "name": "E Michigan",
-      "file": "E Michigan.png"
+      "logo": "E Michigan.png"
     },
     {
       "name": "East Carolina",
-      "file": "East Carolina.png"
+      "logo": "East Carolina.png"
     },
     {
       "name": "FL Atlantic",
-      "file": "FL Atlantic.png"
+      "logo": "FL Atlantic.png"
     },
     {
       "name": "Florida",
-      "file": "Florida.png"
+      "logo": "Florida.png"
     },
     {
       "name": "Florida Intl",
-      "file": "Florida Intl.png"
+      "logo": "Florida Intl.png"
     },
     {
       "name": "Florida St.",
-      "file": "Florida St.png"
+      "logo": "Florida St.png"
     },
     {
       "name": "Fresno St.",
-      "file": "Fresno St.png"
+      "logo": "Fresno St.png"
     },
     {
       "name": "Ga Southern",
-      "file": "Ga Southern.png"
+      "logo": "Ga Southern.png"
     },
     {
       "name": "Georgia",
-      "file": "Georgia.png"
+      "logo": "Georgia.png"
     },
     {
       "name": "Georgia St.",
-      "file": "Georgia St.png"
+      "logo": "Georgia St.png"
     },
     {
       "name": "Georgia Tech",
-      "file": "Georgia Tech.png"
+      "logo": "Georgia Tech.png"
     },
     {
       "name": "Hawaii",
-      "file": "Hawaii.png"
+      "logo": "Hawaii.png"
     },
     {
       "name": "Houston",
-      "file": "Houston.png"
+      "logo": "Houston.png"
     },
     {
       "name": "Idaho",
-      "file": "Idaho.png"
+      "logo": "Idaho.png"
     },
     {
       "name": "Illinois",
-      "file": "Illinois.png"
+      "logo": "Illinois.png"
     },
     {
       "name": "Indiana",
-      "file": "Indiana.png"
+      "logo": "Indiana.png"
     },
     {
       "name": "Iowa",
-      "file": "Iowa.png"
+      "logo": "Iowa.png"
     },
     {
       "name": "Iowa St.",
-      "file": "Iowa St.png"
+      "logo": "Iowa St.png"
     },
     {
       "name": "Kansas",
-      "file": "Kansas.png"
+      "logo": "Kansas.png"
     },
     {
       "name": "Kansas St.",
-      "file": "Kansas St.png"
+      "logo": "Kansas St.png"
     },
     {
       "name": "Kent",
-      "file": "Kent.png"
+      "logo": "Kent.png"
     },
     {
       "name": "Kentucky",
-      "file": "Kentucky.png"
+      "logo": "Kentucky.png"
     },
     {
       "name": "Louisiana Tech",
-      "file": "Louisiana Tech.png"
+      "logo": "Louisiana Tech.png"
     },
     {
       "name": "Louisville",
-      "file": "Louisville.png"
+      "logo": "Louisville.png"
     },
     {
       "name": "LSU",
-      "file": "LSU.png"
+      "logo": "LSU.png"
     },
     {
       "name": "Marshall",
-      "file": "Marshall.png"
+      "logo": "Marshall.png"
     },
     {
       "name": "Maryland",
-      "file": "Maryland.png"
+      "logo": "Maryland.png"
     },
     {
       "name": "Massachusetts",
-      "file": "Massachusetts.png"
+      "logo": "Massachusetts.png"
     },
     {
       "name": "Memphis",
-      "file": "Memphis.png"
+      "logo": "Memphis.png"
     },
     {
       "name": "Miami FL",
-      "file": "Miami FL.png"
+      "logo": "Miami FL.png"
     },
     {
       "name": "Miami OH",
-      "file": "Miami OH.png"
+      "logo": "Miami OH.png"
     },
     {
       "name": "Michigan",
-      "file": "Michigan.png"
+      "logo": "Michigan.png"
     },
     {
       "name": "Michigan St.",
-      "file": "Michigan St.png"
+      "logo": "Michigan St.png"
     },
     {
       "name": "Minnesota",
-      "file": "Minnesota.png"
+      "logo": "Minnesota.png"
     },
     {
       "name": "Mississippi",
-      "file": "Mississippi.png"
+      "logo": "Mississippi.png"
     },
     {
       "name": "Mississippi St.",
-      "file": "Mississippi St.png"
+      "logo": "Mississippi St.png"
     },
     {
       "name": "Missouri",
-      "file": "Missouri.png"
+      "logo": "Missouri.png"
     },
     {
       "name": "MTSU",
-      "file": "MTSU.png"
+      "logo": "MTSU.png"
     },
     {
       "name": "N Illinois",
-      "file": "N Illinois.png"
+      "logo": "N Illinois.png"
     },
     {
       "name": "Navy",
-      "file": "Navy.png"
+      "logo": "Navy.png"
     },
     {
       "name": "NC State",
-      "file": "NC State.png"
+      "logo": "NC State.png"
     },
     {
       "name": "Nebraska",
-      "file": "Nebraska.png"
+      "logo": "Nebraska.png"
     },
     {
       "name": "Nevada",
-      "file": "Nevada.png"
+      "logo": "Nevada.png"
     },
     {
       "name": "New Mexico",
-      "file": "New Mexico.png"
+      "logo": "New Mexico.png"
     },
     {
       "name": "New Mexico St.",
-      "file": "New Mexico St.png"
+      "logo": "New Mexico St.png"
     },
     {
       "name": "North Carolina",
-      "file": "North Carolina.png"
+      "logo": "North Carolina.png"
     },
     {
       "name": "North Texas",
-      "file": "North Texas.png"
+      "logo": "North Texas.png"
     },
     {
       "name": "Northwestern",
-      "file": "Northwestern.png"
+      "logo": "Northwestern.png"
     },
     {
       "name": "Notre Dame",
-      "file": "Notre Dame.png"
+      "logo": "Notre Dame.png"
     },
     {
       "name": "Ohio",
-      "file": "Ohio.png"
+      "logo": "Ohio.png"
     },
     {
       "name": "Ohio St.",
-      "file": "Ohio St.png"
+      "logo": "Ohio St.png"
     },
     {
       "name": "Oklahoma",
-      "file": "Oklahoma.png"
+      "logo": "Oklahoma.png"
     },
     {
       "name": "Oklahoma St.",
-      "file": "Oklahoma St.png"
+      "logo": "Oklahoma St.png"
     },
     {
       "name": "Old Dominion",
-      "file": "Old Dominion.png"
+      "logo": "Old Dominion.png"
     },
     {
       "name": "Oregon",
-      "file": "Oregon.png"
+      "logo": "Oregon.png"
     },
     {
       "name": "Oregon St.",
-      "file": "Oregon St.png"
+      "logo": "Oregon St.png"
     },
     {
       "name": "Penn St.",
-      "file": "Penn St.png"
+      "logo": "Penn St.png"
     },
     {
       "name": "Pittsburgh",
-      "file": "Pittsburgh.png"
+      "logo": "Pittsburgh.png"
     },
     {
       "name": "Purdue",
-      "file": "Purdue.png"
+      "logo": "Purdue.png"
     },
     {
       "name": "Rice",
-      "file": "Rice.png"
+      "logo": "Rice.png"
     },
     {
       "name": "Rutgers",
-      "file": "Rutgers.png"
+      "logo": "Rutgers.png"
     },
     {
       "name": "San Diego St.",
-      "file": "San Diego St.png"
+      "logo": "San Diego St.png"
     },
     {
       "name": "San Jose St.",
-      "file": "San Jose St.png"
+      "logo": "San Jose St.png"
     },
     {
       "name": "SMU",
-      "file": "SMU.png"
+      "logo": "SMU.png"
     },
     {
       "name": "South Alabama",
-      "file": "South Alabama.png"
+      "logo": "South Alabama.png"
     },
     {
       "name": "South Carolina",
-      "file": "South Carolina.png"
+      "logo": "South Carolina.png"
     },
     {
       "name": "South Florida",
-      "file": "South Florida.png"
+      "logo": "South Florida.png"
     },
     {
       "name": "Southern Miss",
-      "file": "Southern Miss.png"
+      "logo": "Southern Miss.png"
     },
     {
       "name": "Stanford",
-      "file": "Stanford.png"
+      "logo": "Stanford.png"
     },
     {
       "name": "Syracuse",
-      "file": "Syracuse.png"
+      "logo": "Syracuse.png"
     },
     {
       "name": "TCU",
-      "file": "TCU.png"
+      "logo": "TCU.png"
     },
     {
       "name": "Temple",
-      "file": "Temple.png"
+      "logo": "Temple.png"
     },
     {
       "name": "Tennessee",
-      "file": "Tennessee.png"
+      "logo": "Tennessee.png"
     },
     {
       "name": "Texas",
-      "file": "Texas.png"
+      "logo": "Texas.png"
     },
     {
       "name": "Texas Arlington",
-      "file": "Texas Arlington.png"
+      "logo": "Texas Arlington.png"
     },
     {
       "name": "Texas St.",
-      "file": "Texas St.png"
+      "logo": "Texas St.png"
     },
     {
       "name": "Texas Tech",
-      "file": "Texas Tech.png"
+      "logo": "Texas Tech.png"
     },
     {
       "name": "Toledo",
-      "file": "Toledo.png"
+      "logo": "Toledo.png"
     },
     {
       "name": "Troy",
-      "file": "Troy.png"
+      "logo": "Troy.png"
     },
     {
       "name": "Tulane",
-      "file": "Tulane.png"
+      "logo": "Tulane.png"
     },
     {
       "name": "Tulsa",
-      "file": "Tulsa.png"
+      "logo": "Tulsa.png"
     },
     {
       "name": "UAB",
-      "file": "UAB.png"
+      "logo": "UAB.png"
     },
     {
       "name": "UCF",
-      "file": "UCF.png"
+      "logo": "UCF.png"
     },
     {
       "name": "UCLA",
-      "file": "UCLA.png"
+      "logo": "UCLA.png"
     },
     {
       "name": "ULL",
-      "file": "ULL.png"
+      "logo": "ULL.png"
     },
     {
       "name": "ULM",
-      "file": "ULM.png"
+      "logo": "ULM.png"
     },
     {
       "name": "UNLV",
-      "file": "UNLV.png"
+      "logo": "UNLV.png"
     },
     {
       "name": "USC",
-      "file": "USC.png"
+      "logo": "USC.png"
     },
     {
       "name": "UT San Antonio",
-      "file": "UT San Antonio.png"
+      "logo": "UT San Antonio.png"
     },
     {
       "name": "Utah",
-      "file": "Utah.png"
+      "logo": "Utah.png"
     },
     {
       "name": "Utah St.",
-      "file": "Utah St.png"
+      "logo": "Utah St.png"
     },
     {
       "name": "UTEP",
-      "file": "UTEP.png"
+      "logo": "UTEP.png"
     },
     {
       "name": "Vanderbilt",
-      "file": "Vanderbilt.png"
+      "logo": "Vanderbilt.png"
     },
     {
       "name": "Virginia",
-      "file": "Virginia.png"
+      "logo": "Virginia.png"
     },
     {
       "name": "Virginia Tech",
-      "file": "Virginia Tech.png"
+      "logo": "Virginia Tech.png"
     },
     {
       "name": "W Michigan",
-      "file": "W Michigan.png"
+      "logo": "W Michigan.png"
     },
     {
       "name": "Wake ForeSt.",
-      "file": "Wake Forest.png"
+      "logo": "Wake Forest.png"
     },
     {
       "name": "Washington",
-      "file": "Washington.png"
+      "logo": "Washington.png"
     },
     {
       "name": "Washington St.",
-      "file": "Washington St.png"
+      "logo": "Washington St.png"
     },
     {
       "name": "West Virginia",
-      "file": "West Virginia.png"
+      "logo": "West Virginia.png"
     },
     {
       "name": "Wisconsin",
-      "file": "Wisconsin.png"
+      "logo": "Wisconsin.png"
     },
     {
       "name": "WKU",
-      "file": "WKU.png"
+      "logo": "WKU.png"
     },
     {
       "name": "Wyoming",
-      "file": "Wyoming.png"
+      "logo": "Wyoming.png"
     }
   ]

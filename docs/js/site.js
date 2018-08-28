@@ -21,6 +21,7 @@ const teamsPromise = fetch('data/teams.json').then(d => d.json()).then(j => {
 
     teamSelect.addEventListener('change', e => {
         teamChanged(e.target.value);
+        // teamChanged2(e.target.value);
     })
 });
 
@@ -54,21 +55,17 @@ async function teamChanged(name) {
     canvas.height = cH;
     const ctx = canvas.getContext('2d');
 
-    const img = new Image();
-    img.onload = () => {
+    const img = await getLogo(team.name);
+    const imgW = img.width;
+    const imgH = img.height;
+    const box = fitIntoBox(imgH, imgW, 470, 725);
 
-        const imgW = img.naturalWidth;
-        const imgH = img.naturalHeight;
-        const box = fitIntoBox(imgH, imgW, 470, 725);
+    const offsetX = (cW - box.x) / 2;
+    const offsetY = ((cH - box.y) / 2) + 45;
 
-        const offsetX = (cW - box.x) / 2;
-        const offsetY = ((cH - box.y) / 2) + 45;
-
-        ctx.drawImage(backgroundCanvas, 0, 0);
-        ctx.drawImage(img, offsetX, offsetY, box.x, box.y);
-        setCanvas(canvas);
-    };
-    img.src = 'images/logos/' + team.file;
+    ctx.drawImage(backgroundCanvas, 0, 0);
+    ctx.drawImage(img, offsetX, offsetY, box.x, box.y);
+    setCanvas(canvas);
 
     addSchedule(canvas, team);
 }
@@ -81,55 +78,68 @@ function addSchedule(canvas, team) {
     const logoWidth = laneWidth * (2 / 3);
     const distFromTop = (canvas.height - laneHeight) / 2 + 30;
     const distFromSide = 324;
-    let count = 0;
 
     const left = games.slice(0, games.length / 2);
-    const right = games.slice(games.length / 2);
     const leftImageHeight = laneHeight / left.length;
-    const rightImageHeight = laneHeight / right.length;
-    const leftPromises = left.map((g, i) => {
-        return new Promise((res, rej) => {
-            const img = new Image();
-            img.onload = () => {
-                try {
-                    const imageSize = fitIntoBox(img.height, img.width, leftImageHeight - 20, logoWidth);
-                    const iDistFromTop = distFromTop + leftImageHeight * i;
-                    const iDistFromSide = distFromSide + (logoWidth - imageSize.x) / 2;
-                    ctx.drawImage(img, iDistFromSide, iDistFromTop, imageSize.x, imageSize.y);
-                } catch (e) {
-                    console.log(e);
-                }
-                res();
-                count++;
-            };
-            img.onerror = e => console.log(e);
-            img.src = `images/logos/${g.team}.png`;
-        })
-    })
-    const rightPromises = right.map((g, i) => {
-        return new Promise((res, rej) => {
-            const img = new Image();
-            img.onload = () => {
-                try {
-                    const imageSize = fitIntoBox(img.height, img.width, rightImageHeight - 20, logoWidth);
-                    const iDistFromTop = distFromTop + rightImageHeight * i;
-                    const iDistFromSide = (canvas.width - distFromSide - imageSize.x) - (logoWidth - imageSize.x) / 2;
-                    ctx.drawImage(img, iDistFromSide, iDistFromTop, imageSize.x, imageSize.y);
-                } catch (e) {
-                    console.log(e);
-                }
-                res();
-                count++;
-            };
-            img.onerror = e => console.log(e);
-            img.src = `images/logos/${g.team}.png`;
-        })
-    })
+    const leftPromises = left.map((g, i) => getLogo(g.team).then(l => {
+        return {
+            logo: l,
+            index: i
+        }
+    }));
 
-    // teamSelect.disabled = true;
-    Promise.all(leftPromises.concat(rightPromises)).then(x => {
-        // teamSelect.disabled = false;
-        console.log(`${count} vs ${games.length}`);
+    const right = games.slice(games.length / 2);
+    const rightImageHeight = laneHeight / right.length;
+    // const rightPromises = right.map((g, i) => {
+    //     getLogo(g.team)
+    //     return new Promise((res, rej) => {
+    //         const img = new Image();
+    //         img.onload = () => {
+    //             try {
+    //                 const imageSize = fitIntoBox(img.height, img.width, rightImageHeight - 20, logoWidth);
+    //                 const iDistFromTop = distFromTop + rightImageHeight * i;
+    //                 const iDistFromSide = (canvas.width - distFromSide - imageSize.x) - (logoWidth - imageSize.x) / 2;
+    //                 ctx.drawImage(img, iDistFromSide, iDistFromTop, imageSize.x, imageSize.y);
+    //             } catch (e) {
+    //                 console.log(e);
+    //             }
+    //             res();
+    //             count++;
+    //         };
+    //         img.onerror = e => console.log(e);
+    //         img.src = `images/logos/${g.team}.png`;
+    //     })
+    // })
+
+    Promise.all(leftPromises).then(arr => arr.forEach(x => {
+        const img = x.logo;
+        const i = x.index;
+        const imageSize = fitIntoBox(img.height, img.width, leftImageHeight - 20, logoWidth);
+        const iDistFromTop = distFromTop + leftImageHeight * i;
+        const iDistFromSide = distFromSide + (logoWidth - imageSize.x) / 2;
+        ctx.drawImage(img, iDistFromSide, iDistFromTop, imageSize.x, imageSize.y);
+    }));
+}
+
+function getLogo(teamName) {
+    const logoCache = getLogo.cache = getLogo.cache || {};
+
+    return new Promise(res => {
+        if (logoCache[teamName]) {
+            res(logoCache[teamName]);
+        } else {
+            const img = new Image();
+            img.onload = () => {
+                const c = document.createElement('canvas');
+                const ctx = c.getContext('2d');
+                c.width = img.width;
+                c.height = img.height;
+                ctx.drawImage(img, 0, 0);
+                logoCache[teamName] = c;
+                res(c);
+            };
+            img.src = `images/logos/${cleanName(teamName)}.png`;
+        }
     });
 }
 
@@ -150,8 +160,11 @@ function getTeam(name) {
 }
 
 function getGames(name) {
-    return games.find(g => g.name == name.replace('St.', 'St')).games;
+    const cleaned = cleanName(name);
+    return games.find(g => g.name == cleaned).games;
 }
+
+cleanName = (name) => name.replace('St.', 'St');
 
 function setCanvas(cvs) {
     cvs.id = 'canvas';
