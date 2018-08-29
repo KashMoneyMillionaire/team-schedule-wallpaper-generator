@@ -21,8 +21,8 @@ const teamsPromise = fetch('data/teams.json').then(d => d.json()).then(j => {
 
     teamSelect.addEventListener('change', e => {
         teamChanged(e.target.value);
-        // teamChanged2(e.target.value);
     })
+
 });
 
 const schedulePromise = fetch('data/games.json').then(d => d.json()).then(j => games = j);
@@ -58,67 +58,115 @@ async function teamChanged(name) {
     const img = await getLogo(team.name);
     const imgW = img.width;
     const imgH = img.height;
-    const box = fitIntoBox(imgH, imgW, 470, 725);
+    const box = fitIntoBox(imgH, imgW, 500, 825);
 
     const offsetX = (cW - box.x) / 2;
-    const offsetY = ((cH - box.y) / 2) + 45;
+    const offsetY = ((cH - box.y) / 2);
 
     ctx.drawImage(backgroundCanvas, 0, 0);
+    ctx.globalAlpha = .85;
     ctx.drawImage(img, offsetX, offsetY, box.x, box.y);
+    ctx.globalAlpha = 1;
     setCanvas(canvas);
 
-    addSchedule(canvas, team);
+    await addSchedule(canvas, team);
 }
 
-function addSchedule(canvas, team) {
+async function addSchedule(canvas, team) {
     const games = getGames(team.name);
     const ctx = canvas.getContext('2d');
-    const laneWidth = 350;
+    const laneWidth = 380;
     const laneHeight = 900;
-    const logoWidth = laneWidth * (2 / 3);
+    const imgTopPadding = 30;
+    const imgSidePadding = 0;
+    const logoWidth = laneWidth * (3 / 5);
+    const timeWidth = laneWidth * (2 / 5);
     const distFromTop = (canvas.height - laneHeight) / 2 + 30;
-    const distFromSide = 324;
+    const distFromSide = 420;
+    const monthHeightWeight = 40 / 100;
+    const dayHeightWeight = 1 - monthHeightWeight;
+    const dayAdjustLeft = 10;
+    const fontFamily = "Esphimere Bold";
+    const fontWeight = 'italic';
+    ctx.textBaseline = 'top';
+    ctx.textAlign = 'center';
+    ctx.fillStyle = "white";
 
     const left = games.slice(0, games.length / 2);
-    const leftImageHeight = laneHeight / left.length;
     const leftPromises = left.map((g, i) => getLogo(g.team).then(l => {
         return {
             logo: l,
-            index: i
+            index: i,
+            game: g
         }
     }));
 
     const right = games.slice(games.length / 2);
-    const rightImageHeight = laneHeight / right.length;
-    // const rightPromises = right.map((g, i) => {
-    //     getLogo(g.team)
-    //     return new Promise((res, rej) => {
-    //         const img = new Image();
-    //         img.onload = () => {
-    //             try {
-    //                 const imageSize = fitIntoBox(img.height, img.width, rightImageHeight - 20, logoWidth);
-    //                 const iDistFromTop = distFromTop + rightImageHeight * i;
-    //                 const iDistFromSide = (canvas.width - distFromSide - imageSize.x) - (logoWidth - imageSize.x) / 2;
-    //                 ctx.drawImage(img, iDistFromSide, iDistFromTop, imageSize.x, imageSize.y);
-    //             } catch (e) {
-    //                 console.log(e);
-    //             }
-    //             res();
-    //             count++;
-    //         };
-    //         img.onerror = e => console.log(e);
-    //         img.src = `images/logos/${g.team}.png`;
-    //     })
-    // })
+    const rightPromises = right.map((g, i) => getLogo(g.team).then(l => {
+        return {
+            logo: l,
+            index: i,
+            game: g
+        }
+    }));
 
-    Promise.all(leftPromises).then(arr => arr.forEach(x => {
+    const leftBoxSize = laneHeight / left.length;
+    const leftSchedProm = Promise.all(leftPromises).then(arr => arr.forEach(x => {
         const img = x.logo;
         const i = x.index;
-        const imageSize = fitIntoBox(img.height, img.width, leftImageHeight - 20, logoWidth);
-        const iDistFromTop = distFromTop + leftImageHeight * i;
-        const iDistFromSide = distFromSide + (logoWidth - imageSize.x) / 2;
-        ctx.drawImage(img, iDistFromSide, iDistFromTop, imageSize.x, imageSize.y);
+        const game = x.game;
+        const maxImageHeight = leftBoxSize - imgTopPadding;
+        const maxImageWidth = logoWidth - imgSidePadding;
+        const imageFit = fitIntoBox(img.height, img.width, maxImageHeight, maxImageWidth);
+        const imgHeightDiff = leftBoxSize - imageFit.y;
+        const actualTopPadding = imgHeightDiff / 2;
+        const boxTop = distFromTop + leftBoxSize * i;
+        const iDistFromTop = boxTop + actualTopPadding;
+        const iDistFromSide = distFromSide + (logoWidth - imageFit.x) / 2;
+        ctx.drawImage(img, iDistFromSide, iDistFromTop, imageFit.x, imageFit.y);
+
+        const topFont = maxImageHeight * monthHeightWeight;
+        const bottomFont = maxImageHeight * dayHeightWeight;
+        const tDistanceFromSide = distFromSide + logoWidth + timeWidth / 2;
+        const tDistanceFromTop = boxTop;
+        ctx.font = buildFont(fontWeight, topFont, fontFamily);
+        ctx.fillText(game.month, tDistanceFromSide, tDistanceFromTop);
+        const topHeight = getTextHeight(fontFamily, topFont);
+        ctx.font = buildFont(fontWeight, bottomFont, fontFamily);
+        ctx.fillText(game.day, tDistanceFromSide - dayAdjustLeft, tDistanceFromTop + topHeight - 10, timeWidth);
     }));
+
+    const rightImageHeight = laneHeight / right.length;
+    const rightSchedProm = Promise.all(rightPromises).then(arr => arr.forEach(x => {
+        const img = x.logo;
+        const i = x.index;
+        const game = x.game;
+        const maxImageHeight = rightImageHeight - imgTopPadding;
+        const maxImageWidth = logoWidth - imgSidePadding;
+        const imageFit = fitIntoBox(img.height, img.width, maxImageHeight, maxImageWidth);
+        const imgHeightDiff = rightImageHeight - imageFit.y;
+        const actualTopPadding = imgHeightDiff / 2;
+        const boxTop = distFromTop + rightImageHeight * i;
+        const iDistFromTop = boxTop + actualTopPadding;
+        const iDistFromSide = (canvas.width - distFromSide - imageFit.x) - (logoWidth - imageFit.x) / 2;
+        ctx.drawImage(img, iDistFromSide, iDistFromTop, imageFit.x, imageFit.y);
+
+        const topFont = maxImageHeight * monthHeightWeight;
+        const bottomFont = maxImageHeight * dayHeightWeight;
+        const tDistanceFromSide = canvas.width - distFromSide - laneWidth + timeWidth / 2;
+        const tDistanceFromTop = boxTop;
+        ctx.font = buildFont(fontWeight, topFont, fontFamily);
+        ctx.fillText(game.month, tDistanceFromSide, tDistanceFromTop);
+        const topHeight = getTextHeight(fontFamily, topFont);
+        ctx.font = buildFont(fontWeight, bottomFont, fontFamily);
+        ctx.fillText(game.day, tDistanceFromSide - dayAdjustLeft, tDistanceFromTop + topHeight - 15, timeWidth);
+    }));
+
+    await Promise.all([leftSchedProm, rightSchedProm]);
+}
+
+function buildFont(weight, size, family) {
+    return `${weight} ${size}px ${family}`
 }
 
 function getLogo(teamName) {
@@ -145,7 +193,7 @@ function getLogo(teamName) {
 
 function fitIntoBox(originalHeight, originalWidth, maxHeight, maxWidth) {
     const ratio = originalHeight / originalWidth;
-    const h1 = Math.min(originalHeight, maxHeight);
+    const h1 = Math.min(originalHeight * 100, maxHeight);
     const w1 = h1 / ratio;
     const w2 = Math.min(w1, maxWidth);
     const h2 = ratio * w2;
@@ -169,4 +217,29 @@ cleanName = (name) => name.replace('St.', 'St');
 function setCanvas(cvs) {
     cvs.id = 'canvas';
     document.body.replaceChild(cvs, document.getElementById('canvas'));
+}
+
+function getTextHeight(fontFamily, fontSize) {
+    const text = document.createElement('span');
+    text.style.fontFamily = fontFamily;
+    text.style.fontSize = fontSize + 'px';
+    text.style.lineHeight = fontSize + 'px';
+    text.innerHTML = 'Hg';
+
+    const block = document.createElement('div');
+    block.style.display = 'inline-block';
+    block.style.width = '1px';
+    block.style.height = '0px';
+
+    var div = document.createElement('div');
+    div.appendChild(text);
+    div.appendChild(block);
+    document.body.appendChild(div);
+
+    try {
+        block.style.verticalAlign = 'top';
+        return (text.offsetTop + text.offsetHeight) - block.offsetTop;
+    } finally {
+//         document.body.removeChild(div);
+    }
 }

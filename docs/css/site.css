@@ -5,3 +5,12 @@ img {
 canvas {
     width: 100vw;
 }
+
+@font-face {
+    font-family: "Esphimere Bold";
+    src: url('../fonts/Esphimere Bold.otf') format("truetype");
+}
+
+* {
+    font-family: "Esphimere Bold"
+}
