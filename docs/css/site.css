@@ -104,6 +104,10 @@ h2 {
     padding: 5px 0;
 }
 
+#rotate, #save {
+    display: none;
+}
+
 @media screen and (min-width: 375px) {
     html {
         font-size: 10px;

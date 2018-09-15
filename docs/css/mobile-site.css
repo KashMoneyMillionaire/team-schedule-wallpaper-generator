@@ -1,3 +1,14 @@
+@media screen and (max-width: 720px) {
+    .button, button, select {
+        font-size: 1.2rem;
+    }
+
+    #rotate, #save {
+        display: block;
+        padding-top: 10px;
+    }
+}
+
 @media (orientation: landscape) and (max-height: 500px) {
     header {
         width: 25%;
@@ -49,11 +60,8 @@
     h2 span {
         display: none;
     }
-}
-
-@media screen and (max-width: 720px) {
-    .button, button, select {
-        font-size: 1.2rem;
-    }
     
+    #rotate {
+        display: none;
+    }
 }
