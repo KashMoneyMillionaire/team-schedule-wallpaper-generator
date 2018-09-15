@@ -239,9 +239,6 @@ function getLogo(teamName) {
                 logoCache[teamName] = c;
                 res(c);
             };
-            img.onerror = () => {
-                img.src = `images/logos/${cleanName(teamName)}.PNG`;
-            };
             img.src = `images/logos/${cleanName(teamName)}.png`;
         }
     });

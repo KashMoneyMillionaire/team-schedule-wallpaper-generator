@@ -10020,5 +10020,78 @@
             }
         ],
         "name": "Liberty"
+    },
+    {
+        "games": [
+            {
+                "month": "AUG",
+                "day": 30,
+                "location": "H",
+                "team": "SW Minnesota State"
+            },
+            {
+                "month": "SEP",
+                "day": 8,
+                "location": "A",
+                "team": "Augustana"
+            },
+            {
+                "month": "SEP",
+                "day": 15,
+                "location": "H",
+                "team": "Concordia St. Paul"
+            },
+
+            {
+                "month": "SEP",
+                "day": 22,
+                "location": "A",
+                "team": "Winona State"
+            },
+            {
+                "month": "SEP",
+                "day": 29,
+                "location": "H",
+                "team": "St. Cloud State"
+            },
+
+            {
+                "month": "OCT",
+                "day": 6,
+                "location": "A",
+                "team": "MSU Moorhead"
+            },
+            {
+                "month": "OCT",
+                "day": 13,
+                "location": "H",
+                "team": "Minot State"
+            },
+            {
+                "month": "OCT",
+                "day": 20,
+                "location": "A",
+                "team": "Bemidji State"
+            },
+            {
+                "month": "OCT",
+                "day": 27,
+                "location": "A",
+                "team": "Wayne State"
+            },
+            {
+                "month": "NOV",
+                "day": 3,
+                "location": "H",
+                "team": "Sioux Falls"
+            },
+            {
+                "month": "NOV",
+                "day": 10,
+                "location": "H",
+                "team": "Upper Iowa"
+            }
+        ],
+        "name": "Minnesota State"
     }
 ]
