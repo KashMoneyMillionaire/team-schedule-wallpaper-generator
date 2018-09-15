@@ -2998,6 +2998,12 @@
                 "day": 17,
                 "location": "H",
                 "team": "UNLV"
+            },
+            {
+                "month": "NOV",
+                "day": 24,
+                "location": "A",
+                "team": "San Diego St"
             }
         ],
         "name": "Hawaii"
@@ -6617,6 +6623,12 @@
                 "day": 17,
                 "location": "A",
                 "team": "LSU"
+            },
+            {
+                "month": "NOV",
+                "day": 24,
+                "location": "H",
+                "team": "Old Dominion"
             }
         ],
         "name": "Rice"
