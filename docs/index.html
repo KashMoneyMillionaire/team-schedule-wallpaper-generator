@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
 
@@ -8,27 +9,45 @@
           content="Sports Team Schedule Wallpaper Generator">
     <meta name="author"
           content="kashleec@gmail.com">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/site.css">
-    <link rel="stylesheet" href="https://use.typekit.net/jzr4zqv.css">
+    <link rel="stylesheet"
+          href="css/normalize.css">
+    <link rel="stylesheet"
+          href="css/site.css">
+    <link rel="stylesheet"
+          href="https://use.typekit.net/jzr4zqv.css">
 
 </head>
 
 <body>
-    <h1 id="title">Title By Html</h1>
-    <select id="team-select">
-        <option>Select a team</option>
-    </select>
-    <button onclick="teamChanged(document.getElementById('team-select').value)">ref</button>
+    <div id="options">
+        <h1><a href="https://www.reddit.com/r/cfb" target="_blank">/r/CFB</a> Schedule Generator</h1>
+        <div id="input-holder">
+            <select id="team-select">
+                <option>Select a team</option>
+            </select>
+            <input type="file"
+                   hidden="hidden"
+                   id="file-input"
+                   onchange="uploadLogo()" />
+            <button onclick="document.getElementById('file-input').click()">Choose Different Logo</button>
+        </div>
+    </div>
 
-    <img id="team-logo" />
     <canvas id="canvas"></canvas>
-    <canvas id="test"></canvas>
 
-    <script src="js/site.js"></script>
-    <script src="js/merge.js"></script>
+    <script src="js/site.js"
+            async></script>
+    <!-- <script src="http://www.numericjs.com/lib/numeric-1.2.6.min.js" async></script> -->
+    <!-- <script src="js/perspective.js" async></script> -->
 </body>
-
+<footer>
+    <h2>
+        <a href="https://www.reddit.com/user/CookingAppleBear" target="_blank">/u/CookingAppleBear</a> 
+        | <a href="https://github.com/KashMoneyMillionaire/team-schedule-wallpaper-generator/issues" target="_blank">Github</a>
+        | <a href="http://kash.money" target="_blank">http://kash.money</a>
+    </h2>
+</footer>
 </html>
-

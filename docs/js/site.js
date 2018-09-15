@@ -1,15 +1,16 @@
 const teamSelect = document.getElementById('team-select');
-const title = document.getElementById('title')
-const teamLogo = document.getElementById('team-logo');
 const backgroundImg = 'images/background-2018.png';
 
 let teams = [];
 let games = [];
 let backgroundCanvas;
 
-loadBackground(backgroundImg);
+loadBackground(backgroundImg).then(() => {
+    document.querySelector('#team-select [value="TCU"]').selected = true;
+    teamChanged('TCU');
+});
 
-const teamsPromise = fetch('data/teams.json').then(d => d.json()).then(j => {
+fetch('data/teams.json').then(d => d.json()).then(j => {
     teams = j;
 
     for (const team of j) {
@@ -21,32 +22,65 @@ const teamsPromise = fetch('data/teams.json').then(d => d.json()).then(j => {
 
     teamSelect.addEventListener('change', e => {
         teamChanged(e.target.value);
-    })
-
+    });
 });
 
-const schedulePromise = fetch('data/games.json').then(d => d.json()).then(j => games = j);
+fetch('data/games.json').then(d => d.json()).then(j => games = j);
 
 function loadBackground(backgroundSrc) {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    setCanvas(canvas);
+    return new Promise((res) => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        setCanvas(canvas);
 
-    const img = new Image();
-    img.onload = () => {
-        canvas.width = img.naturalWidth;
-        canvas.height = img.naturalHeight;
-        ctx.drawImage(img, 0, 0);
-    };
-    img.src = backgroundSrc;
-    backgroundCanvas = canvas;
+        const img = new Image();
+        img.onload = () => {
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            ctx.drawImage(img, 0, 0);
+            res();
+        };
+        img.src = backgroundSrc;
+        backgroundCanvas = canvas;
+    });
 }
 
-async function teamChanged(name) {
+function uploadLogo() {
+    const fileEl = document.getElementById('file-input');
+    const f = fileEl.files && fileEl.files[0];
+    if (f) {
+        if (!f.name.toLowerCase().endsWith('.png')) {
+            alert('Only .png files work at the moment. Apologies.');
+            return;
+        }
+
+        var reader = new FileReader();
+        reader.onload = function () {
+            const img = new Image();
+            img.onload = () => {
+                const c = document.createElement('canvas');
+                const ctx = c.getContext('2d');
+                c.width = img.width;
+                c.height = img.height;
+                ctx.drawImage(img, 0, 0);
+                getLogo.cache[f.name] = c;
+                teamChanged(teamSelect.value, f.name);
+            };
+            img.src = reader.result;
+        };
+        reader.readAsDataURL(f);
+    }
+}
+
+async function teamChanged(name, logoOverride) {
     const team = getTeam(name);
     if (!team) return;
-    title.innerText = team.name;
 
+    const canvas = await setLogo(logoOverride || name);
+    await addSchedule(canvas, team);
+}
+
+async function setLogo(name) {
     const cW = backgroundCanvas.width;
     const cH = backgroundCanvas.height;
 
@@ -55,7 +89,7 @@ async function teamChanged(name) {
     canvas.height = cH;
     const ctx = canvas.getContext('2d');
 
-    const img = await getLogo(team.name);
+    const img = await getLogo(name);
     const imgW = img.width;
     const imgH = img.height;
     const box = fitIntoBox(imgH, imgW, 500, 825);
@@ -69,7 +103,7 @@ async function teamChanged(name) {
     ctx.globalAlpha = 1;
     setCanvas(canvas);
 
-    await addSchedule(canvas, team);
+    return canvas;
 }
 
 async function addSchedule(canvas, team) {
@@ -86,11 +120,11 @@ async function addSchedule(canvas, team) {
     const monthHeightWeight = 40 / 100;
     const dayHeightWeight = 1 - monthHeightWeight;
     const dayAdjustLeft = 10;
-    const fontFamily = "Esphimere Bold";
+    const fontFamily = 'Esphimere Bold';
     const fontWeight = 'italic';
     ctx.textBaseline = 'top';
     ctx.textAlign = 'center';
-    ctx.fillStyle = "white";
+    ctx.fillStyle = 'white';
 
     const left = games.slice(0, games.length / 2);
     const leftPromises = left.map((g, i) => getLogo(g.team).then(l => {
@@ -98,7 +132,7 @@ async function addSchedule(canvas, team) {
             logo: l,
             index: i,
             game: g
-        }
+        };
     }));
 
     const right = games.slice(games.length / 2);
@@ -107,7 +141,7 @@ async function addSchedule(canvas, team) {
             logo: l,
             index: i,
             game: g
-        }
+        };
     }));
 
     const leftBoxSize = laneHeight / left.length;
@@ -166,7 +200,7 @@ async function addSchedule(canvas, team) {
 }
 
 function buildFont(weight, size, family) {
-    return `${weight} ${size}px ${family}`
+    return `${weight} ${size}px ${family}`;
 }
 
 function getLogo(teamName) {
@@ -212,7 +246,7 @@ function getGames(name) {
     return games.find(g => g.name == cleaned).games;
 }
 
-cleanName = (name) => name.replace('St.', 'St');
+const cleanName = (name) => name.replace('St.', 'St');
 
 function setCanvas(cvs) {
     cvs.id = 'canvas';
@@ -240,6 +274,6 @@ function getTextHeight(fontFamily, fontSize) {
         block.style.verticalAlign = 'top';
         return (text.offsetTop + text.offsetHeight) - block.offsetTop;
     } finally {
-//         document.body.removeChild(div);
+        document.body.removeChild(div);
     }
 }
