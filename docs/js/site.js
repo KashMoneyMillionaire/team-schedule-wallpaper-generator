@@ -292,3 +292,30 @@ function getTextHeight(fontFamily, fontSize) {
         document.body.removeChild(div);
     }
 }
+
+const saver = document.getElementById('saver');
+saver.addEventListener('click', download);
+function download() {
+    const filename = teamSelect.value + '-20    18.png';
+    var c = document.createElement('canvas');
+    c.width = wallpaper.naturalWidth;
+    c.height = wallpaper.naturalHeight;
+    var ctx = c.getContext('2d');
+
+    ctx.drawImage(wallpaper, 0, 0);
+    c.toBlob(function (file) {
+        if (window.navigator.msSaveOrOpenBlob)
+            window.navigator.msSaveOrOpenBlob(file, filename);
+        else {
+            const url = URL.createObjectURL(file);
+            saver.href = url;
+            saver.download = filename;
+
+            window.open(url, '_blank');
+            
+            // setTimeout(function () {
+            //     window.URL.revokeObjectURL(url);
+            // }, 1000);
+        }
+    }, 'image/png');
+}
