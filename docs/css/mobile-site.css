@@ -64,4 +64,8 @@
     #rotate {
         display: none;
     }
+    #save {
+        display: block;
+        padding-top: 10px;
+    }
 }
