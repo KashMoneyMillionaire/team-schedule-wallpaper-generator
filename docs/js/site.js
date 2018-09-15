@@ -1,5 +1,7 @@
 const teamSelect = document.getElementById('team-select');
+const wallpaper = document.getElementById('wallpaper');
 const backgroundImg = 'images/background-2018.png';
+const spinner = document.getElementById('spinner');
 
 let teams = [];
 let games = [];
@@ -31,7 +33,6 @@ function loadBackground(backgroundSrc) {
     return new Promise((res) => {
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
-        setCanvas(canvas);
 
         const img = new Image();
         img.onload = () => {
@@ -45,6 +46,8 @@ function loadBackground(backgroundSrc) {
     });
 }
 
+const fileInput = document.getElementById('file-input');
+fileInput.addEventListener('click', uploadLogo);
 function uploadLogo() {
     const fileEl = document.getElementById('file-input');
     const f = fileEl.files && fileEl.files[0];
@@ -68,6 +71,7 @@ function uploadLogo() {
             };
             img.src = reader.result;
         };
+        toggleSpinner(true);
         reader.readAsDataURL(f);
     }
 }
@@ -76,8 +80,17 @@ async function teamChanged(name, logoOverride) {
     const team = getTeam(name);
     if (!team) return;
 
+    toggleSpinner(true);
     const canvas = await setLogo(logoOverride || name);
     await addSchedule(canvas, team);
+    canvasToImage(canvas, wallpaper);
+    toggleSpinner(false);
+}
+
+function toggleSpinner(isOn) {
+    spinner.style.display = isOn ? 'block' : 'none';
+    wallpaper.style.display = isOn ? 'none' : 'inline';
+
 }
 
 async function setLogo(name) {
@@ -101,9 +114,13 @@ async function setLogo(name) {
     ctx.globalAlpha = .85;
     ctx.drawImage(img, offsetX, offsetY, box.x, box.y);
     ctx.globalAlpha = 1;
-    setCanvas(canvas);
 
     return canvas;
+}
+
+function canvasToImage(canvas, img) {
+    const url = canvas.toDataURL('image/png');
+    img.src = url;
 }
 
 async function addSchedule(canvas, team) {
@@ -251,10 +268,6 @@ function getGames(name) {
 
 const cleanName = (name) => name.replace('St.', 'St');
 
-function setCanvas(cvs) {
-    cvs.id = 'canvas';
-    document.body.replaceChild(cvs, document.getElementById('canvas'));
-}
 
 function getTextHeight(fontFamily, fontSize) {
     const text = document.createElement('span');

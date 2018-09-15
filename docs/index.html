@@ -5,7 +5,8 @@
     <meta charset="utf-8">
 
     <title>Schedule Wallpaper Generator</title>
-    <link rel="icon" href="https://b.thumbs.redditmedia.com/JGr0BtccIxlp8u8bnrEsJZf8YZKMk6g4u3C90dvhxbk.png">
+    <link rel="icon"
+          href="https://b.thumbs.redditmedia.com/JGr0BtccIxlp8u8bnrEsJZf8YZKMk6g4u3C90dvhxbk.png">
     <meta name="description"
           content="Sports Team Schedule Wallpaper Generator">
     <meta name="author"
@@ -18,13 +19,18 @@
     <link rel="stylesheet"
           href="css/site.css">
     <link rel="stylesheet"
+          href="css/spinner.css">
+    <link rel="stylesheet"
           href="https://use.typekit.net/jzr4zqv.css">
 
+    <script src="js/site.js"
+            async></script>
 </head>
 
 <body>
-    <div id="options">
-        <h1><a href="https://www.reddit.com/r/cfb" target="_blank">/r/CFB</a> Schedule Generator</h1>
+    <header>
+        <h1><a href="https://www.reddit.com/r/cfb"
+               target="_blank">/r/CFB</a> Schedule Generator</h1>
         <div id="input-holder">
             <select id="team-select">
                 <option>Select a team</option>
@@ -32,24 +38,33 @@
             <input type="file"
                    hidden="hidden"
                    id="file-input"
-                   accept=".png"
-                   onchange="uploadLogo()" />
+                   accept=".png" />
             <button onclick="document.getElementById('file-input').click()">Choose Different Logo</button>
         </div>
-    </div>
+    </header>
 
-    <canvas id="canvas"></canvas>
+    <main class="image-holder">
+        <div class="spinner"
+             id="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+        <img id="wallpaper">
+    </main>
 
-    <script src="js/site.js"
-            async></script>
-    <!-- <script src="http://www.numericjs.com/lib/numeric-1.2.6.min.js" async></script> -->
-    <!-- <script src="js/perspective.js" async></script> -->
+    <footer>
+        <h2>
+            <a href="https://www.reddit.com/user/CookingAppleBear"
+               target="_blank">/u/CookingAppleBear</a>
+            | <a href="https://github.com/KashMoneyMillionaire/team-schedule-wallpaper-generator/issues"
+               target="_blank">Github</a>
+            | <a href="http://kash.money"
+               target="_blank">http://kash.money</a>
+        </h2>
+    </footer>
 </body>
-<footer>
-    <h2>
-        <a href="https://www.reddit.com/user/CookingAppleBear" target="_blank">/u/CookingAppleBear</a> 
-        | <a href="https://github.com/KashMoneyMillionaire/team-schedule-wallpaper-generator/issues" target="_blank">Github</a>
-        | <a href="http://kash.money" target="_blank">http://kash.money</a>
-    </h2>
-</footer>
+
 </html>
