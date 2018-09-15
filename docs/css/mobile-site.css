@@ -1,0 +1,51 @@
+@media (orientation: landscape) and (max-height: 500px) {
+    header {
+        width: 25%;
+        height: 100vh;
+        position: relative;
+        float: left;
+    }
+
+    #input-holder {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    #input-holder > * {
+        font-size: .8rem;
+        display: inline-block;
+        margin: 10px;
+    }
+
+    h1 {
+        margin-top: 15px;
+    }
+
+    main {
+        align-items: center;
+        justify-content: center;
+        width: 75%;
+        height: 100vh;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    footer {
+        width: 25%;
+        height: auto;
+    }
+
+    a {
+        display: block;
+        padding-bottom: 5px;
+        display: block;
+    }
+
+    h2 {
+        margin: 0;
+        padding: 0;
+    }
+    h2 span {
+        display: none;
+    }
+}
