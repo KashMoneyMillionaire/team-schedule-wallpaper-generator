@@ -4,6 +4,7 @@
         height: 100vh;
         position: relative;
         float: left;
+        display: inline-block;
     }
 
     #input-holder {
