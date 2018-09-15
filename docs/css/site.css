@@ -6,6 +6,7 @@
 html {
     font-size: 8px;
     height: 100%;
+    width: 100%;
 }
 
 * {
@@ -84,10 +85,15 @@ h1 {
     background: white;
     border: 1px grey solid;
     color: black !important;
+    cursor: pointer;
+    line-height: 1.15;
+    min-height: 30px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    min-width: 70px;
 }
 
 .button {
-    width: 150px;
     align-self: center;
 }
 

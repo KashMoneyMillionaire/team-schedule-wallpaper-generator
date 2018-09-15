@@ -50,3 +50,10 @@
         display: none;
     }
 }
+
+@media screen and (max-width: 720px) {
+    .button, button, select {
+        font-size: 1.2rem;
+    }
+    
+}

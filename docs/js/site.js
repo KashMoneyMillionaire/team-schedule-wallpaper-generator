@@ -305,7 +305,7 @@ function getTextHeight(fontFamily, fontSize) {
 }
 
 const saver = document.getElementById('saver');
-saver.addEventListener('click', download);
+saver && saver.addEventListener('click', download);
 function download() {
     const filename = teamSelect.value + '-2018.png';
     var c = document.createElement('canvas');
