@@ -7,29 +7,40 @@ let teams = [];
 let games = [];
 let backgroundCanvas;
 
-loadBackground(backgroundImg).then(() => {
-    const search = new URLSearchParams(document.location.search);
-    const team = search.get('team') || 'TCU';
-    document.querySelector('#team-select [value="' + team + '"]').selected = true;
-    teamChanged(team);
-});
+loadInitialData();
 
-fetch('data/teams.json').then(d => d.json()).then(j => {
-    teams = j;
+async function loadInitialData() {
 
-    for (const team of j) {
-        const o = document.createElement('option');
-        o.innerText = team.name;
-        o.value = team.name;
-        teamSelect.options.add(o);
-    }
+    const teamPromise = fetch('data/teams.json')
+        .then(d => d.json())
+        .then(t => {
+            teams = t;
 
-    teamSelect.addEventListener('change', e => {
-        teamChanged(e.target.value);
+            for (const team of t) {
+                const o = document.createElement('option');
+                o.innerText = team.name;
+                o.value = team.name;
+                teamSelect.options.add(o);
+            }
+
+            teamSelect.addEventListener('change', e => teamChanged(e.target.value));
+        });
+
+    const gamePromise = fetch('data/games.json')
+        .then(d => d.json())
+        .then(g => games = g);
+
+    await Promise.all([teamPromise, gamePromise]);
+
+    await loadBackground(backgroundImg).then(() => {
+        const search = new URLSearchParams(document.location.search);
+        let team = search.get('team');
+        if (!getTeam(team))
+            team = 'TCU';
+        document.querySelector('#team-select [value="' + team + '"]').selected = true;
+        teamChanged(team);
     });
-});
-
-fetch('data/games.json').then(d => d.json()).then(j => games = j);
+}
 
 function loadBackground(backgroundSrc) {
     return new Promise((res) => {
@@ -312,7 +323,7 @@ function download() {
             saver.download = filename;
 
             window.open(url, '_blank');
-            
+
             // setTimeout(function () {
             //     window.URL.revokeObjectURL(url);
             // }, 1000);
