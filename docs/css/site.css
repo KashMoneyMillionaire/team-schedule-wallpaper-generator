@@ -14,11 +14,7 @@ html {
 
 body {
     background: #f7f7f7;
-}
-
-main {
-    flex: 1;
-    /* flex-shrink: 1; */
+    height: 100vh;
 }
 
 img {
@@ -29,10 +25,16 @@ img {
     margin: 0;
 }
 
-.image-holder {
+main {
     width: 95vw;
     align-self: center;
     margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    position: relative;
+    padding-top: 25px;
 }
 
 header {
@@ -89,14 +91,8 @@ h1 {
 h2 {
     text-align: center;
     font-size: 1.3rem;
-}
-
-.image-holder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    margin: 0;
+    padding: 5px 0;
 }
 
 @media screen and (min-width: 375px) {
