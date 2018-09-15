@@ -8,8 +8,10 @@ let games = [];
 let backgroundCanvas;
 
 loadBackground(backgroundImg).then(() => {
-    document.querySelector('#team-select [value="TCU"]').selected = true;
-    teamChanged('TCU');
+    const search = new URLSearchParams(document.location.search);
+    const team = search.get('team') || 'TCU';
+    document.querySelector('#team-select [value="' + team + '"]').selected = true;
+    teamChanged(team);
 });
 
 fetch('data/teams.json').then(d => d.json()).then(j => {
