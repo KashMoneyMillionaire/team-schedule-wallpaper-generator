@@ -307,7 +307,7 @@ function getTextHeight(fontFamily, fontSize) {
 const saver = document.getElementById('saver');
 saver.addEventListener('click', download);
 function download() {
-    const filename = teamSelect.value + '-20    18.png';
+    const filename = teamSelect.value + '-2018.png';
     var c = document.createElement('canvas');
     c.width = wallpaper.naturalWidth;
     c.height = wallpaper.naturalHeight;
@@ -322,11 +322,11 @@ function download() {
             saver.href = url;
             saver.download = filename;
 
-            window.open(url, '_blank');
+            // window.open(url, '_blank');
 
-            // setTimeout(function () {
-            //     window.URL.revokeObjectURL(url);
-            // }, 1000);
+            setTimeout(function () {
+                window.URL.revokeObjectURL(url);
+            }, 1000);
         }
     }, 'image/png');
 }
