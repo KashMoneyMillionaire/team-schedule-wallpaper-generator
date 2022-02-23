@@ -2,6 +2,7 @@ const teamSelect = document.getElementById('team-select');
 const wallpaper = document.getElementById('wallpaper');
 const backgroundImg = 'images/background-2018.png';
 const spinner = document.getElementById('spinner');
+const advanced = document.getElementById('advanced');
 
 let teams = [];
 let games = [];
@@ -329,4 +330,10 @@ function download() {
             }, 1000);
         }
     }, 'image/png');
+}
+
+const advancedToggle = document.getElementById('advanced-toggle');
+advancedToggle && advancedToggle.addEventListener('click', toggleAdvanced);
+function toggleAdvanced() {
+    advanced.style.maxHeight = '0px';
 }
